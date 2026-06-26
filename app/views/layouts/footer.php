@@ -14,7 +14,7 @@ $scripts       = $scripts       ?? [];
   <nav class="cb-footer-links">
     <a href="#">Términos</a>
     <a href="#">Privacidad</a>
-    <a href="#">Contáctanos</a>
+    <a href="<?php echo url('contacto'); ?>">Contáctanos</a>
   </nav>
   <span>&copy; <?php echo date('Y'); ?> <?php echo APP_NAME; ?></span>
 </footer>

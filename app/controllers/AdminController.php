@@ -14,7 +14,7 @@ class AdminController extends Controller
         $tipo    = '';
 
         if ($seccion === 'confiteria') {
-            [$mensaje, $tipo] = $this->gestionarConfiteria();
+            [$mensaje, $tipo, $editando] = $this->gestionarConfiteria();
             $modelo    = $this->modelo('Confiteria');
             $productos = $modelo->todas('DESC');
 
@@ -23,10 +23,11 @@ class AdminController extends Controller
                 'mensaje'   => $mensaje,
                 'tipo'      => $tipo,
                 'productos' => $productos,
+                'editando'  => $editando,
             ]);
         } else {
             $seccion = 'peliculas';
-            [$mensaje, $tipo] = $this->gestionarPeliculas();
+            [$mensaje, $tipo, $editando] = $this->gestionarPeliculas();
             $modelo    = $this->modelo('Pelicula');
             $peliculas = $modelo->todas();
 
@@ -35,6 +36,7 @@ class AdminController extends Controller
                 'mensaje'   => $mensaje,
                 'tipo'      => $tipo,
                 'peliculas' => $peliculas,
+                'editando'  => $editando,
             ]);
         }
     }
@@ -42,7 +44,8 @@ class AdminController extends Controller
     // ─── Lógica de la sección Películas ───────────────────────
     private function gestionarPeliculas(): array
     {
-        $modelo = $this->modelo('Pelicula');
+        $modelo   = $this->modelo('Pelicula');
+        $editando = null;
 
         if (isset($_POST['agregar_pelicula'])) {
             $titulo       = trim($_POST['titulo'] ?? '');
@@ -53,26 +56,47 @@ class AdminController extends Controller
             $imagen       = $this->subirImagen('pelicula');
 
             if ($modelo->crear($titulo, $descripcion, $duracion, $genero, $calificacion, $imagen)) {
-                return ['¡Película agregada exitosamente!', 'exito'];
+                return ['¡Película agregada exitosamente!', 'exito', null];
             }
-            return ['Error al agregar la película.', 'error'];
+            return ['Error al agregar la película.', 'error', null];
+        }
+
+        if (isset($_POST['actualizar_pelicula'])) {
+            $id           = (int) ($_POST['id'] ?? 0);
+            $titulo       = trim($_POST['titulo'] ?? '');
+            $descripcion  = trim($_POST['descripcion'] ?? '');
+            $duracion     = trim($_POST['duracion'] ?? '');
+            $genero       = trim($_POST['genero'] ?? '');
+            $calificacion = (int) ($_POST['calificacion'] ?? 3);
+            $imagen       = $this->subirImagen('pelicula');
+
+            if ($modelo->actualizar($id, $titulo, $descripcion, $duracion, $genero, $calificacion, $imagen)) {
+                return ['¡Película actualizada exitosamente!', 'exito', null];
+            }
+            return ['Error al actualizar la película.', 'error', null];
         }
 
         if (isset($_GET['eliminar_pelicula'])) {
             $id = (int) $_GET['eliminar_pelicula'];
             if ($modelo->eliminar($id)) {
-                return ['Película eliminada.', 'exito'];
+                return ['Película eliminada.', 'exito', null];
             }
-            return ['Error al eliminar.', 'error'];
+            return ['Error al eliminar.', 'error', null];
         }
 
-        return ['', ''];
+        if (isset($_GET['editar_pelicula'])) {
+            $id       = (int) $_GET['editar_pelicula'];
+            $editando = $modelo->porId($id);
+        }
+
+        return ['', '', $editando];
     }
 
     // ─── Lógica de la sección Confitería ──────────────────────
     private function gestionarConfiteria(): array
     {
-        $modelo = $this->modelo('Confiteria');
+        $modelo   = $this->modelo('Confiteria');
+        $editando = null;
 
         if (isset($_POST['agregar_producto'])) {
             $titulo      = trim($_POST['titulo'] ?? '');
@@ -81,20 +105,38 @@ class AdminController extends Controller
             $imagen      = $this->subirImagen('producto');
 
             if ($modelo->crear($titulo, $descripcion, $precio, $imagen)) {
-                return ['¡Producto agregado exitosamente!', 'exito'];
+                return ['¡Producto agregado exitosamente!', 'exito', null];
             }
-            return ['Error al agregar el producto.', 'error'];
+            return ['Error al agregar el producto.', 'error', null];
+        }
+
+        if (isset($_POST['actualizar_producto'])) {
+            $id          = (int) ($_POST['id'] ?? 0);
+            $titulo      = trim($_POST['titulo'] ?? '');
+            $descripcion = trim($_POST['descripcion'] ?? '');
+            $precio      = (float) ($_POST['precio'] ?? 0);
+            $imagen      = $this->subirImagen('producto');
+
+            if ($modelo->actualizar($id, $titulo, $descripcion, $precio, $imagen)) {
+                return ['¡Producto actualizado exitosamente!', 'exito', null];
+            }
+            return ['Error al actualizar el producto.', 'error', null];
         }
 
         if (isset($_GET['eliminar_producto'])) {
             $id = (int) $_GET['eliminar_producto'];
             if ($modelo->eliminar($id)) {
-                return ['Producto eliminado.', 'exito'];
+                return ['Producto eliminado.', 'exito', null];
             }
-            return ['Error al eliminar.', 'error'];
+            return ['Error al eliminar.', 'error', null];
         }
 
-        return ['', ''];
+        if (isset($_GET['editar_producto'])) {
+            $id       = (int) $_GET['editar_producto'];
+            $editando = $modelo->porId($id);
+        }
+
+        return ['', '', $editando];
     }
 
     /**
@@ -122,7 +164,7 @@ class AdminController extends Controller
         $destino = UPLOAD_DIR . '/' . $nombre;
 
         if (move_uploaded_file($_FILES['imagen']['tmp_name'], $destino)) {
-            return 'uploads/' . $nombre;   // ruta relativa para la BD/HTML
+            return 'uploads/' . $nombre;
         }
 
         return '';

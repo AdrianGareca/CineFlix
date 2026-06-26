@@ -56,4 +56,23 @@ class Pelicula
         $stmt = $this->db->prepare("DELETE FROM peliculas WHERE id = ?");
         return $stmt->execute([$id]);
     }
+
+    /**
+     * Actualiza una película. Si $imagen es '' se conserva la imagen existente.
+     */
+    public function actualizar(int $id, string $titulo, string $descripcion, string $duracion,
+                               string $genero, int $calificacion, string $imagen): bool
+    {
+        if ($imagen !== '') {
+            $stmt = $this->db->prepare(
+                "UPDATE peliculas SET titulo=?, descripcion=?, duracion=?, genero=?, calificacion=?, imagen=? WHERE id=?"
+            );
+            return $stmt->execute([$titulo, $descripcion, $duracion, $genero, $calificacion, $imagen, $id]);
+        }
+
+        $stmt = $this->db->prepare(
+            "UPDATE peliculas SET titulo=?, descripcion=?, duracion=?, genero=?, calificacion=? WHERE id=?"
+        );
+        return $stmt->execute([$titulo, $descripcion, $duracion, $genero, $calificacion, $id]);
+    }
 }

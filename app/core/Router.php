@@ -20,6 +20,9 @@ class Router
         // Confitería
         'golosinas' => ['GolosinaController',  'index'],
 
+        // Contacto
+        'contacto'  => ['ContactoController',  'index'],
+
         // Panel de administración
         'admin'     => ['AdminController',     'index'],
 

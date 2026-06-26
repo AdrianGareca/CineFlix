@@ -61,6 +61,15 @@ INSERT INTO peliculas (titulo, descripcion, duracion, genero, calificacion, imag
 ('Dune Part 2', 'Paul Atreides se une a los Fremen para cumplir su destino y enfrentar a las fuerzas que destruyeron a su familia en esta épica continuación.', '2h 46m', 'Ciencia Ficción / Aventura', 4, 'img/peliculadune.jpeg'),
 ('Misión Imposible', 'Ethan Hunt y su equipo deben detener una inteligencia artificial fuera de control que amenaza al mundo entero en su misión más peligrosa.', '2h 50m', 'Suspenso / Acción', 5, 'img/peliculamisionimposible.jpeg');
 
+-- Tabla de mensajes de contacto
+CREATE TABLE contactos (
+    id         INT AUTO_INCREMENT PRIMARY KEY,
+    nombre     VARCHAR(100)  NOT NULL,
+    correo     VARCHAR(100)  NOT NULL,
+    mensaje    TEXT          NOT NULL,
+    enviado_en TIMESTAMP     DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Confitería inicial
 INSERT INTO confiteria (titulo, descripcion, precio, imagen) VALUES
 ('Pipocas', 'Saladas o dulces, la mejor compañía para tu película.', 25.00, 'img/pipocas.jpeg'),

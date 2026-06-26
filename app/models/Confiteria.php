@@ -36,4 +36,31 @@ class Confiteria
         $stmt = $this->db->prepare("DELETE FROM confiteria WHERE id = ?");
         return $stmt->execute([$id]);
     }
+
+    /** Un producto por su id. */
+    public function porId(int $id): ?array
+    {
+        $stmt = $this->db->prepare("SELECT * FROM confiteria WHERE id = ?");
+        $stmt->execute([$id]);
+        $fila = $stmt->fetch();
+        return $fila ?: null;
+    }
+
+    /**
+     * Actualiza un producto. Si $imagen es '' se conserva la imagen existente.
+     */
+    public function actualizar(int $id, string $titulo, string $descripcion, float $precio, string $imagen): bool
+    {
+        if ($imagen !== '') {
+            $stmt = $this->db->prepare(
+                "UPDATE confiteria SET titulo=?, descripcion=?, precio=?, imagen=? WHERE id=?"
+            );
+            return $stmt->execute([$titulo, $descripcion, $precio, $imagen, $id]);
+        }
+
+        $stmt = $this->db->prepare(
+            "UPDATE confiteria SET titulo=?, descripcion=?, precio=? WHERE id=?"
+        );
+        return $stmt->execute([$titulo, $descripcion, $precio, $id]);
+    }
 }
