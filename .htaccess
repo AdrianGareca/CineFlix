@@ -1,0 +1,6 @@
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # (Opcional) Redirige raíz al front controller
+</IfModule>
