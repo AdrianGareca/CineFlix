@@ -1,0 +1,148 @@
+/* ── Datos de Factura ──────────────────────────────────────── */
+
+body {
+  background: var(--canvas);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px;
+}
+
+.conteneidor {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 36px 40px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.5);
+
+  opacity: 0;
+  transform: translateY(16px);
+  animation: cardIn 700ms var(--ease) forwards;
+}
+
+@keyframes cardIn {
+  to { opacity: 1; transform: none; }
+}
+
+/* Logo / encabezado */
+.factura-logo {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Sección título */
+.titulo0, .titulo, .titulo2 {
+  margin-bottom: 20px;
+}
+
+.titulo0 h2, .titulo h2, .titulo2 h2 {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
+}
+
+/* Monto de compra */
+.montoDcompra {
+  background: var(--surface-dim);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.montoDcompra h4 {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-2);
+  padding: 6px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+}
+
+.montoDcompra h4:last-child {
+  border-bottom: none;
+  font-weight: 700;
+  color: var(--text-1);
+  padding-top: 12px;
+  margin-top: 6px;
+}
+
+/* Separador */
+.factura-sep {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+/* Datos de factura */
+.datosDefactura {
+  margin-bottom: 8px;
+}
+
+/* Métodos de pago */
+.botonesDpago {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.tarjeta, .QR, .tigoM {
+  border-radius: var(--r);
+  overflow: hidden;
+}
+
+.tarjeta a, .QR a, .tigoM a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 200ms, transform 160ms var(--ease);
+  letter-spacing: 0.02em;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  color: var(--text-1);
+  background: var(--surface);
+}
+
+.tarjeta a:hover { background: var(--surface-dim); }
+.tarjeta a:active,
+.QR a:active,
+.tigoM a:active { transform: scale(0.98); }
+
+.QR a {
+  background: var(--text-1);
+  color: #FFFFFF;
+  border-color: transparent;
+}
+.QR a:hover { background: #333; }
+
+.tigoM a {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-1);
+}
+.tigoM a:hover { background: var(--surface-dim); }
+
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .conteneidor { padding: 24px 20px; }
+  .montoDcompra h4 { font-size: 0.78rem; }
+}

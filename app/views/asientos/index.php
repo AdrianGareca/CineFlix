@@ -1,0 +1,138 @@
+<?php
+/** Vista: Selector de butacas (estática integrada). */
+$this->parcial('header', [
+    'titulo'  => 'Selector de Butacas',
+    'estilos' => ['asiento'],
+]);
+?>
+
+<!-- Barra superior -->
+<div class="cb-back-bar">
+  <a href="<?php echo url('cartelera'); ?>" class="cb-back">&#8592; Volver</a>
+  <span class="cb-timer">07:11</span>
+</div>
+
+<h1 class="asientos-title">Elige tu butaca</h1>
+
+<!-- Pantalla -->
+<div class="pantalla-wrapper">
+  <div class="pantalla"></div>
+  <span class="pantalla-label">Pantalla</span>
+</div>
+
+<!-- Mapa de asientos -->
+<div class="mapa">
+
+  <div class="fila"><h2>A</h2>
+    <div class="espacio"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="butaca especial"></div><div class="butaca especial"></div><div class="butaca especial"></div>
+    <div class="espacio"></div>
+    <div class="butaca especial"></div><div class="butaca especial"></div><div class="butaca especial"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div><div class="butaca especial"></div>
+  </div>
+
+  <div class="fila"><h2>B</h2>
+    <div class="espacio"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="espacio"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div><div class="butaca disponible"></div>
+  </div>
+
+  <div class="fila"><h2>C</h2>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="espacio"></div>
+    <div class="butaca ocupado"></div><div class="butaca ocupado"></div><div class="butaca ocupado"></div><div class="butaca ocupado"></div>
+  </div>
+
+  <div class="fila"><h2>D</h2>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="butaca disponible"></div><div class="butaca no-disponible"></div>
+    <div class="espacio"></div>
+    <div class="butaca ocupado"></div><div class="butaca ocupado"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div>
+  </div>
+
+  <div class="fila"><h2>E</h2>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="butaca ocupado"></div><div class="butaca ocupado"></div>
+    <div class="espacio"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div>
+  </div>
+
+  <div class="fila"><h2>F</h2>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="butaca disponible"></div><div class="butaca no-disponible"></div>
+    <div class="espacio"></div>
+    <div class="butaca ocupado"></div><div class="butaca ocupado"></div><div class="butaca ocupado"></div><div class="butaca ocupado"></div>
+  </div>
+
+  <div class="fila"><h2>G</h2>
+    <div class="espacio"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="butaca ocupado"></div><div class="butaca ocupado"></div><div class="butaca ocupado"></div>
+    <div class="butaca disponible"></div>
+    <div class="espacio"></div>
+    <div class="butaca seleccionado"></div><div class="butaca seleccionado"></div><div class="butaca seleccionado"></div>
+    <div class="butaca ocupado"></div><div class="butaca disponible"></div><div class="butaca disponible"></div>
+  </div>
+
+  <div class="fila"><h2>H</h2>
+    <div class="espacio"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="espacio"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="butaca ocupado"></div><div class="butaca ocupado"></div>
+    <div class="butaca no-disponible"></div><div class="butaca disponible"></div>
+  </div>
+
+  <div class="fila"><h2>I</h2>
+    <div class="espacio"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="espacio"></div>
+    <div class="butaca disponible"></div><div class="butaca disponible"></div>
+    <div class="butaca ocupado"></div><div class="butaca ocupado"></div>
+    <div class="butaca no-disponible"></div><div class="butaca no-disponible"></div>
+  </div>
+
+  <div class="fila numeros">
+    <h2></h2>
+    <div class="espacio"></div>
+    <div class="numero">1</div><div class="numero">2</div><div class="numero">3</div>
+    <div class="numero">4</div><div class="numero">5</div><div class="numero">6</div>
+    <div class="espacio"></div>
+    <div class="numero">7</div><div class="numero">8</div><div class="numero">9</div>
+    <div class="numero">10</div><div class="numero">11</div><div class="numero">12</div>
+  </div>
+
+</div>
+
+<!-- Leyenda -->
+<div class="Asientos">
+  <div class="leyenda-item"><div class="cuadro disponible"></div> Disponible</div>
+  <div class="leyenda-item"><div class="cuadro seleccionado"></div> Tu selección</div>
+  <div class="leyenda-item"><div class="cuadro ocupado"></div> Ocupado</div>
+  <div class="leyenda-item"><div class="cuadro no-disponible"></div> No disponible</div>
+  <div class="leyenda-item"><div class="cuadro especial"></div> Especial</div>
+</div>
+
+<!-- Resumen -->
+<div class="resumen">
+  <p><strong>Ciudad</strong> Santa Cruz — Av. Trompillo</p>
+  <p><strong>Película</strong> Rocky 2D</p>
+  <p><strong>Fecha</strong> Sábado 7 de junio</p>
+  <p><strong>Horario</strong> 18:00</p>
+  <p><strong>Butacas</strong> G7, G8, G9</p>
+  <p><strong>Entradas</strong> 3</p>
+  <p class="resumen-total"><strong>Total</strong> Bs. 174</p>
+</div>
+
+<a href="<?php echo url('golosinas'); ?>" class="boton-ver-mas">Continuar &rarr;</a>
+
+<?php $this->parcial('footer', ['mostrarFooter' => false]); ?>

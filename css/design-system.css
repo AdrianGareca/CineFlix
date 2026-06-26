@@ -1,0 +1,243 @@
+/* ============================================================
+   CINEFLIX — Design System
+   Paleta: warm monochrome + cinema red accent
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;1,6..72,400&display=swap');
+
+/* ── Variables ───────────────────────────────────────────── */
+:root {
+  --canvas:        #0F0F0F;
+  --surface:       #1A1A1A;
+  --surface-dim:   #222222;
+  --border:        rgba(255,255,255,0.09);
+  --border-strong: rgba(255,255,255,0.16);
+
+  --text-1:  #F2F0ED;
+  --text-2:  #7A7774;
+  --text-3:  #484644;
+
+  --red:       #C4405A;
+  --red-dim:   #A3304A;
+  --red-light: rgba(196, 64, 90, 0.14);
+
+  --dark:         #080808;
+  --dark-surface: #111111;
+  --dark-border:  rgba(255,255,255,0.07);
+  --dark-text-2:  rgba(255,255,255,0.45);
+
+  --font-sans:  -apple-system, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+  --font-serif: 'Newsreader', 'Playfair Display', Georgia, serif;
+  --font-mono:  'SF Mono', 'Courier New', monospace;
+
+  --r:    8px;
+  --r-lg: 12px;
+
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { font-family: var(--font-sans); background: var(--canvas); color: var(--text-1); line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+input, button, select, textarea { font-family: inherit; font-size: inherit; }
+
+/* ── Navbar ──────────────────────────────────────────────── */
+.cb-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--dark);
+  border-bottom: 1px solid var(--dark-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 56px;
+}
+
+.cb-nav-logo {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cb-nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.cb-nav-links a {
+  font-size: 0.78rem;
+  color: var(--dark-text-2);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 200ms;
+}
+
+.cb-nav-links a:hover { color: #FFFFFF; }
+
+/* ── Footer ──────────────────────────────────────────────── */
+.cb-footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: var(--text-2);
+  flex-wrap: wrap;
+  margin-top: 72px;
+}
+
+.cb-footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.cb-footer-links a { color: var(--text-2); transition: color 200ms; }
+.cb-footer-links a:hover { color: var(--text-1); }
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.cb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: var(--r);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background-color 200ms, transform 160ms var(--ease);
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.cb-btn:active { transform: scale(0.97); }
+
+.cb-btn-dark {
+  background: var(--text-1);
+  color: #FFFFFF;
+}
+.cb-btn-dark:hover { background: #333333; }
+
+.cb-btn-red {
+  background: var(--red);
+  color: #FFFFFF;
+}
+.cb-btn-red:hover { background: var(--red-dim); }
+
+.cb-btn-ghost {
+  background: transparent;
+  color: var(--text-1);
+  border: 1px solid var(--border);
+}
+.cb-btn-ghost:hover { background: var(--surface-dim); }
+
+.cb-btn-lg { padding: 13px 28px; font-size: 0.92rem; }
+.cb-btn-sm { padding: 7px 14px; font-size: 0.78rem; }
+
+/* ── Form ────────────────────────────────────────────────── */
+.cb-field { margin-bottom: 20px; }
+
+.cb-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.cb-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  font-size: 0.9rem;
+  color: var(--text-1);
+  transition: border-color 200ms;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.cb-input:focus { border-color: var(--text-1); }
+.cb-input::placeholder { color: var(--text-3); }
+
+/* ── Tags / Badges ───────────────────────────────────────── */
+.cb-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cb-tag-red   { background: var(--red-light); color: var(--red); }
+.cb-tag-dark  { background: rgba(255,255,255,0.08); color: var(--text-2); }
+
+/* ── Back bar ────────────────────────────────────────────── */
+.cb-back-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: var(--dark);
+  border-bottom: 1px solid var(--dark-border);
+}
+
+.cb-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 200ms;
+  cursor: pointer;
+}
+.cb-back:hover { color: #FFFFFF; }
+
+.cb-timer {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.06);
+  padding: 5px 12px;
+  border-radius: var(--r);
+  border: 1px solid var(--dark-border);
+}
+
+/* ── Scroll reveal ───────────────────────────────────────── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 600ms var(--ease), transform 600ms var(--ease);
+}
+[data-reveal].revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Responsive nav ──────────────────────────────────────── */
+@media (max-width: 640px) {
+  .cb-nav { padding: 0 16px; }
+  .cb-nav-links { gap: 14px; }
+  .cb-nav-links a { font-size: 0.7rem; }
+  .cb-footer { padding: 28px 16px; fl

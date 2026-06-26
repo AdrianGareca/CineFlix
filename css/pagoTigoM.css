@@ -1,0 +1,83 @@
+/* ── Pago con Tigo Money ───────────────────────────────────── */
+
+body {
+  background: var(--canvas);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.contenedor {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 36px 40px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.5);
+
+  opacity: 0;
+  transform: translateY(16px);
+  animation: cardIn 700ms var(--ease) forwards;
+}
+
+@keyframes cardIn {
+  to { opacity: 1; transform: none; }
+}
+
+.titulo {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.titulo h2 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
+}
+
+.cajaNumeroDcelular { margin-bottom: 16px; }
+
+.tigo-hint {
+  font-size: 0.84rem;
+  color: var(--text-2);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.btnPagar {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  background: var(--text-1);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--r);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 200ms, transform 160ms var(--ease);
+  letter-spacing: 0.03em;
+}
+
+.btnPagar:hover  { background: #333; }
+.btnPagar:active { transform: scale(0.98); }
+
+.btnPagar h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 480px) {
+  body { justify-content: flex-start; padding: 24px 12px; }
+  .contenedor { padding: 24px 18px; }
+}

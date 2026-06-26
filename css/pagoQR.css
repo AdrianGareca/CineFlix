@@ -1,0 +1,96 @@
+/* ── Pago con QR ───────────────────────────────────────────── */
+
+body {
+  background: var(--canvas);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.contenedor {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 36px 40px;
+  width: 100%;
+  max-width: 440px;
+  text-align: center;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.5);
+
+  opacity: 0;
+  transform: translateY(16px);
+  animation: cardIn 700ms var(--ease) forwards;
+}
+
+@keyframes cardIn {
+  to { opacity: 1; transform: none; }
+}
+
+.titulo {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.titulo h2 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
+}
+
+/* QR image */
+.qr-image {
+  display: block;
+  margin: 0 auto 20px;
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  padding: 8px;
+}
+
+/* Instrucción */
+.qr-hint {
+  font-size: 0.84rem;
+  color: var(--text-2);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Botón */
+.btnDescargarImg {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: var(--text-1);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--r);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 200ms, transform 160ms var(--ease);
+  letter-spacing: 0.02em;
+}
+
+.btnDescargarImg h3 {
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.btnDescargarImg:hover  { background: #333; }
+.btnDescargarImg:active { transform: scale(0.98); }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 480px) {
+  body { justify-content: flex-start; padding: 24px 12px; }
+  .contenedor { padding: 24px 18px; }
+  .qr-image { width: 180px; height: 180px; }
+}
