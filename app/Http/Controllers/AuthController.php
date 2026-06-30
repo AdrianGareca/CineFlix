@@ -24,10 +24,10 @@ class AuthController extends Controller
             'contrasena' => 'required|string',
         ]);
 
-        // Faithful to the legacy auth (Usuario::autenticar): authenticate by the
-        // 'usuario' column, then verify the bcrypt hash that the native PHP
-        // password_hash(PASSWORD_DEFAULT) stored in 'contrasena' — Hash::check is
-        // bcrypt-compatible, so the existing seeded accounts keep working.
+        // Fiel a la autenticación heredada (Usuario::autenticar): se autentica por la
+        // columna 'usuario' y se verifica el hash bcrypt que el password_hash(PASSWORD_DEFAULT)
+        // original guardó en 'contrasena'. Hash::check es compatible con bcrypt, por lo que
+        // las cuentas ya sembradas siguen funcionando sin necesidad de re-encriptarlas.
         $user = User::where('usuario', $request->usuario)->first();
 
         if (!$user || !Hash::check($request->contrasena, $user->contrasena)) {
@@ -39,7 +39,7 @@ class AuthController extends Controller
         Auth::loginUsingId($user->id);
         $request->session()->regenerate();
 
-        // Legacy behaviour: admins land on the panel, everyone else on the billboard.
+        // Comportamiento heredado: los administradores entran al panel; el resto, a la cartelera.
         if ($user->rol === 'admin') {
             return redirect()->intended(route('admin.dashboard'));
         }

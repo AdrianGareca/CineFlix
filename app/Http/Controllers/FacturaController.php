@@ -17,7 +17,7 @@ class FacturaController extends Controller
         $precioGolosinas = $booking['precio_golosinas'] ?? 0;
         $total           = $precioEntradas + $precioGolosinas;
 
-        // Store total for payment pages
+        // Guardar el total para las pantallas de pago
         session(['booking.total' => $total]);
 
         return view('factura.index', [

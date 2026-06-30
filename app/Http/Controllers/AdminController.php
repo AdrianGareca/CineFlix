@@ -11,21 +11,21 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     /**
-     * Guard: only authenticated users with rol === 'admin' may proceed.
-     * Returns a redirect when access is denied, or null when allowed.
+     * Verificación de acceso: solo continúan los usuarios autenticados con rol 'admin'.
+     * Devuelve una redirección cuando se deniega el acceso, o null cuando se permite.
      */
     private function guard(): ?RedirectResponse
     {
         if (!Auth::check() || Auth::user()->rol !== 'admin') {
             return redirect()->route('cartelera')
-                ->with('error', 'Acceso restringido: necesitas una cuenta de administrador.');
+                ->with('error', 'Acceso denegado. Se requieren permisos de administrador.');
         }
         return null;
     }
 
     /**
-     * Move an uploaded image into public/img/ and return its stored path
-     * (e.g. "img/1700000000_poster.jpg") to keep it compatible with asset().
+     * Mueve una imagen subida a public/img/ y devuelve la ruta guardada
+     * (p. ej. "img/1700000000_poster.jpg") para mantenerla compatible con asset().
      */
     private function guardarImagen(Request $request, string $campo = 'imagen'): ?string
     {
@@ -33,17 +33,17 @@ class AdminController extends Controller
             return null;
         }
 
-        $file   = $request->file($campo);
-        $limpio = preg_replace('/[^A-Za-z0-9._-]/', '_', $file->getClientOriginalName());
-        $nombre = time() . '_' . $limpio;
+        $archivo = $request->file($campo);
+        $limpio  = preg_replace('/[^A-Za-z0-9._-]/', '_', $archivo->getClientOriginalName());
+        $nombre  = time() . '_' . $limpio;
 
-        $file->move(public_path('img'), $nombre);
+        $archivo->move(public_path('img'), $nombre);
 
         return 'img/' . $nombre;
     }
 
     // ─────────────────────────────────────────────────────────────
-    //  Dashboard
+    //  Panel principal (Dashboard)
     // ─────────────────────────────────────────────────────────────
     public function index()
     {
@@ -119,9 +119,9 @@ class AdminController extends Controller
             'imagen'       => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:4096',
         ]);
 
-        // Keep the existing image unless a new file was uploaded.
-        if ($nueva = $this->guardarImagen($request)) {
-            $datos['imagen'] = $nueva;
+        // Conservar la imagen existente salvo que se haya subido un archivo nuevo.
+        if ($nuevaImagen = $this->guardarImagen($request)) {
+            $datos['imagen'] = $nuevaImagen;
         } else {
             unset($datos['imagen']);
         }
@@ -202,8 +202,9 @@ class AdminController extends Controller
             'imagen'      => 'nullable|image|mimes:jpeg,jpg,png,webp,gif|max:4096',
         ]);
 
-        if ($nueva = $this->guardarImagen($request)) {
-            $datos['imagen'] = $nueva;
+        // Conservar la imagen existente salvo que se haya subido un archivo nuevo.
+        if ($nuevaImagen = $this->guardarImagen($request)) {
+            $datos['imagen'] = $nuevaImagen;
         } else {
             unset($datos['imagen']);
         }

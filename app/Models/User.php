@@ -21,13 +21,13 @@ class User extends Authenticatable
     const CREATED_AT = 'creado_en';
     const UPDATED_AT = null;
 
-    // Disable remember-token: usuarios table has no remember_token column
+    // Se deshabilita el "remember token": la tabla 'usuarios' no tiene columna remember_token.
     public function getRememberTokenName(): string
     {
         return '';
     }
 
-    // No automatic casting — hashing is done explicitly in AuthController
+    // Sin casteo automático: el hasheo de la contraseña se hace explícitamente en AuthController.
     protected function casts(): array
     {
         return [];

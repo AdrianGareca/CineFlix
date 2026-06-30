@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class AsientoController extends Controller
 {
-    // Pre-occupied seats for demo (a real system would query a reservas table)
+    // Butacas ya ocupadas (demo). En un sistema real se consultaría una tabla de reservas.
     private const OCUPADOS = ['A3','A7','B1','B5','C2','C6','C9','D4','D8','E3','E7'];
 
-    // VIP seats — higher price
+    // Butacas especiales (VIP) — precio más alto
     private const ESPECIALES = ['E4','E5','E6','E7'];
 
     public function index(Request $request)

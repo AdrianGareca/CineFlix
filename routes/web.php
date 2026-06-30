@@ -10,42 +10,42 @@ use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PeliculaController;
 use Illuminate\Support\Facades\Route;
 
-// ── Home / Billboard ─────────────────────────────────────────
+// ── Inicio / Cartelera ───────────────────────────────────────
 Route::get('/',          [HomeController::class, 'cartelera'])->name('home');
 Route::get('/cartelera', [HomeController::class, 'cartelera'])->name('cartelera');
 
-// ── Confitería (GET shows menu, POST stores selections) ──────
+// ── Confitería (GET muestra el menú, POST guarda la selección) ─
 Route::get('/golosinas',  [HomeController::class, 'golosinas'])->name('golosinas');
 Route::post('/golosinas', [HomeController::class, 'guardarGolosinas'])->name('golosinas.guardar');
 
-// ── Movie detail ─────────────────────────────────────────────
+// ── Detalle de película ──────────────────────────────────────
 Route::get('/pelicula/{id}', [PeliculaController::class, 'show'])->name('peliculas.show');
 
-// ── Seat selection ───────────────────────────────────────────
+// ── Selección de butacas ─────────────────────────────────────
 Route::get('/asientos',  [AsientoController::class, 'index'])->name('asientos.index');
 Route::post('/asientos', [AsientoController::class, 'guardar'])->name('asientos.guardar');
 
-// ── Checkout / Invoice ───────────────────────────────────────
+// ── Checkout / Factura ───────────────────────────────────────
 Route::get('/factura', [FacturaController::class, 'index'])->name('factura.index');
 
-// ── Payment pages ────────────────────────────────────────────
+// ── Pantallas de pago ────────────────────────────────────────
 Route::get('/pago/qr',      [PagoController::class, 'qr'])->name('pago.qr');
 Route::get('/pago/tarjeta', [PagoController::class, 'tarjeta'])->name('pago.tarjeta');
 Route::get('/pago/tigo',    [PagoController::class, 'tigo'])->name('pago.tigo');
 
-// ── Contact ──────────────────────────────────────────────────
+// ── Contacto ─────────────────────────────────────────────────
 Route::get('/contacto',  [ContactoController::class, 'index'])->name('contacto');
 Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.enviar');
 
-// ── Authentication ───────────────────────────────────────────
+// ── Autenticación ────────────────────────────────────────────
 Route::get('/login',     [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login',    [AuthController::class, 'login']);
 Route::post('/logout',   [AuthController::class, 'logout'])->name('logout');
 Route::get('/registro',  [AuthController::class, 'showRegistro'])->name('registro');
 Route::post('/registro', [AuthController::class, 'registro'])->name('registro.store');
 
-// ── Admin panel (Module 6) ───────────────────────────────────
-// Access is enforced inside AdminController::guard() (rol === 'admin').
+// ── Panel de administración (Módulo 6) ───────────────────────
+// El control de acceso se aplica dentro de AdminController::guard() (rol === 'admin').
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
 
