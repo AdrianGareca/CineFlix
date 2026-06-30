@@ -1,0 +1,136 @@
+/* ── Login / Registro — CineFlix ────────────────────────────── */
+
+body {
+  background: var(--canvas);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+/* Logo */
+.login-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.login-logo svg { opacity: 0.9; }
+
+.login-logo-text {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-1);
+}
+
+/* Card */
+.login-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 8px 32px rgba(0,0,0,0.5);
+
+  opacity: 0;
+  transform: translateY(16px);
+  animation: cardIn 600ms var(--ease) forwards;
+}
+
+@keyframes cardIn {
+  to { opacity: 1; transform: none; }
+}
+
+.login-card h2 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+  margin-bottom: 28px;
+  line-height: 1.2;
+}
+
+/* Divider */
+.login-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+/* Error / éxito */
+.error-msg {
+  background: rgba(196,64,90,0.12);
+  border: 1px solid rgba(196,64,90,0.28);
+  color: #e57a8a;
+  padding: 10px 14px;
+  border-radius: var(--r);
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.exito-msg {
+  background: rgba(39,174,96,0.12);
+  border: 1px solid rgba(39,174,96,0.28);
+  color: #6fd96f;
+  padding: 10px 14px;
+  border-radius: var(--r);
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/* Botón principal — fondo claro, texto oscuro para contraste */
+.login-submit {
+  width: 100%;
+  padding: 13px;
+  background: var(--text-1);       /* #F2F0ED — crema/blanco cálido */
+  color: #0F0F0F;                   /* texto oscuro sobre fondo claro */
+  border: none;
+  border-radius: var(--r);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background-color 200ms, transform 160ms var(--ease);
+  text-align: center;
+  display: block;
+  text-decoration: none;
+}
+
+.login-submit:hover  { background: #d8d5d0; }
+.login-submit:active { transform: scale(0.98); }
+
+/* Link secundario */
+.login-alt {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.82rem;
+  color: var(--text-2);
+}
+
+.login-alt a {
+  color: var(--text-1);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1px;
+  transition: border-color 200ms;
+}
+.login-alt a:hover { border-color: var(--text-1); }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .login-card { padding: 28px 20px; }
+  .login-card h2 { font-size: 1.4rem; }
+}
