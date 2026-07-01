@@ -26,12 +26,18 @@ Route::get('/asientos',  [AsientoController::class, 'index'])->name('asientos.in
 Route::post('/asientos', [AsientoController::class, 'guardar'])->name('asientos.guardar');
 
 // ── Checkout / Factura ───────────────────────────────────────
-Route::get('/factura', [FacturaController::class, 'index'])->name('factura.index');
+Route::get('/factura',             [FacturaController::class, 'index'])->name('factura.index');
+Route::get('/factura/comprobante', [FacturaController::class, 'comprobante'])->name('factura.comprobante');
 
 // ── Pantallas de pago ────────────────────────────────────────
 Route::get('/pago/qr',      [PagoController::class, 'qr'])->name('pago.qr');
 Route::get('/pago/tarjeta', [PagoController::class, 'tarjeta'])->name('pago.tarjeta');
 Route::get('/pago/tigo',    [PagoController::class, 'tigo'])->name('pago.tigo');
+
+// ── Confirmación de pago (POST) ───────────────────────────────
+Route::post('/pago/qr',      [PagoController::class, 'procesarQr'])->name('pago.qr.procesar');
+Route::post('/pago/tarjeta', [PagoController::class, 'procesarTarjeta'])->name('pago.tarjeta.procesar');
+Route::post('/pago/tigo',    [PagoController::class, 'procesarTigo'])->name('pago.tigo.procesar');
 
 // ── Contacto ─────────────────────────────────────────────────
 Route::get('/contacto',  [ContactoController::class, 'index'])->name('contacto');

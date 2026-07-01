@@ -58,7 +58,7 @@
 
   <hr class="factura-sep">
 
-  {{-- Payment methods --}}
+  {{-- Métodos de pago --}}
   <div class="titulo2">
     <h2>Selecciona el método de pago</h2>
   </div>

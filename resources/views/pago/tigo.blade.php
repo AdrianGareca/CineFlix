@@ -49,9 +49,12 @@
                    letter-spacing:0.03em;"
             onmouseover="this.style.background='#d8d5d0'"
             onmouseout="this.style.background='var(--text-1)'"
-            onclick="alert('✓ Pago procesado exitosamente. ¡Disfruta la película!')">
+            form="tigo-form">
       Confirmar pago — Bs. {{ number_format($total, 0) }}
     </button>
+    <form id="tigo-form" method="POST" action="{{ route('pago.tigo.procesar') }}">
+      @csrf
+    </form>
   </div>
 </div>
 

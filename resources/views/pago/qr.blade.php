@@ -23,9 +23,17 @@
     Monto a pagar: <strong>Bs. {{ number_format($total, 0) }}</strong>
   </p>
 
-  <button class="btnDescargarImg" onclick="descargarQR()">
+  <button class="btnDescargarImg" onclick="descargarQR()" type="button">
     <h3>Descargar QR</h3>
   </button>
+
+  <form method="POST" action="{{ route('pago.qr.procesar') }}" style="margin-top:16px;">
+    @csrf
+    <button type="submit" class="btnDescargarImg"
+            style="background:var(--accent,#c4404a);color:#fff;">
+      <h3>Confirmar pago — Bs. {{ number_format($total, 0) }}</h3>
+    </button>
+  </form>
 </div>
 
 <script>

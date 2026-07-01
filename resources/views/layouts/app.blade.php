@@ -12,6 +12,22 @@
 
   @include('layouts.nav')
 
+  @if(session('exito'))
+    <div style="background:rgba(39,174,96,0.12);border:1px solid rgba(39,174,96,0.28);
+                color:#6fd96f;padding:14px 20px;border-radius:var(--r);
+                max-width:960px;margin:20px auto 0;font-size:0.9rem;text-align:center;">
+      {{ session('exito') }}
+    </div>
+  @endif
+
+  @if(session('error'))
+    <div style="background:rgba(196,64,90,0.12);border:1px solid rgba(196,64,90,0.28);
+                color:#e57a8a;padding:14px 20px;border-radius:var(--r);
+                max-width:960px;margin:20px auto 0;font-size:0.9rem;text-align:center;">
+      {{ session('error') }}
+    </div>
+  @endif
+
   @yield('content')
 
   {{-- Views that need no footer override this section with an empty @section block --}}

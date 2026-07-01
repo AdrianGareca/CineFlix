@@ -49,10 +49,12 @@
     </div>
   </div>
 
-  <button class="btnPagar"
-          onclick="alert('✓ Pago procesado exitosamente. ¡Disfruta la película!')">
-    <h3>Pagar Bs. {{ number_format($total, 0) }}</h3>
-  </button>
+  <form method="POST" action="{{ route('pago.tarjeta.procesar') }}">
+    @csrf
+    <button type="submit" class="btnPagar">
+      <h3>Pagar Bs. {{ number_format($total, 0) }}</h3>
+    </button>
+  </form>
 </div>
 
 <script>
